@@ -1,0 +1,394 @@
+<div class="mst-add-role">
+  <form [formGroup]="savingDiscoveredForm">
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-12 p-1">
+        <div class="mst-panel">
+          <div
+            class="mst-panel__title ps-4 pe-4 pt-3 d-flex justify-content-between"
+          >
+            <span></span>
+            <div class="d-flex">
+              <div
+                (click)="addAttachments()"
+                class="btn btn-sm btn-default me-2"
+                tooltip="Add Attachments"
+              >
+                <span class="fa fa-paperclip"></span>
+              </div>
+              <button
+                (click)="save()"
+                [disabled]="isSaving"
+                class="btn btn-sm btn-primary me-2"
+              >
+                <i *ngIf="isSaving" class="fa fa-spin fa-spinner me-2"></i>
+                <span>Save</span>
+              </button>
+              <!-- <button
+                (click)="save()"
+                [disabled]="isSaving"
+                class="btn btn-sm btn-primary me-2"
+              >
+                <i *ngIf="isSaving" class="fa fa-spin fa-spinner me-2"></i>
+                <span>Submit</span>
+              </button> -->
+            </div>
+          </div>
+          <div class="mst-panel__body ps-4 pe-4 pt-3 pb-3">
+            <div class="row">
+              <div class="form-group col-3">
+                <label for=""> Number </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="number"
+                />
+              </div>
+              <div class="form-group col-3">
+                <label for=""> Company <b class="mst-text--danger">*</b></label>
+                <ng-select
+                  [items]="companies"
+                  bindLabel="name"
+                  [typeahead]="companySearchQuery$"
+                  placeholder="Search Companies"
+                  formControlName="company"
+                ></ng-select>
+              </div>
+              <div class="form-group col-3">
+                <label for=""> Account <b class="mst-text--danger">*</b></label>
+                <ng-select
+                  [items]="accounts"
+                  bindLabel="name"
+                  [typeahead]="accountSearchQuery$"
+                  placeholder="Search Accounts"
+                  formControlName="account"
+                ></ng-select>
+              </div>
+              <div class="form-group col-3">
+                <label for=""> Account Type </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  readonly
+                  [value]="
+                    savingDiscoveredForm.get('account').value?.accountType
+                  "
+                />
+              </div>
+              <div class="form-group col-3">
+                <label for=""> Vendor</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  readonly
+                  formControlName="vendor"
+                />
+              </div>
+              <div class="form-group col-3">
+                <label for=""> Cost Center</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="costCenter"
+                />
+              </div>
+              <div class="form-group col-3">
+                <label for=""> TN/Circuit Number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="circuitNumber"
+                />
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="form-group col-3">
+                <label for=""> Parent </label>
+                <ng-select
+                  [items]="parents"
+                  bindValue="id"
+                  bindLabel="number"
+                  [typeahead]="parentSearchQuery$"
+                  placeholder="Search Savings Discovered"
+                  formControlName="parentId"
+                ></ng-select>
+              </div>
+              <div class="form-group col-3">
+                <label for=""> Assigned</label>
+                <ng-select
+                  [items]="users"
+                  bindLabel="name"
+                  [typeahead]="userSearchQuery$"
+                  placeholder="Search Users"
+                  formControlName="assignedTo"
+                ></ng-select>
+              </div>
+              <div class="form-group col-3">
+                <label for="">
+                  State(status) <b class="mst-text--danger">*</b></label
+                >
+                <select
+                  name=""
+                  id=""
+                  class="form-select"
+                  formControlName="status"
+                >
+                  <option [ngValue]="0">Open</option>
+                  <option [ngValue]="1">Pending</option>
+                  <option [ngValue]="2">Realized</option>
+                  <option [ngValue]="3">Closed not realized</option>
+                  <option [ngValue]="4">Cancelled</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="mst-table__container mt-3">
+                <tabset>
+                  <tab
+                    heading="Savings *"
+                    [customClass]="
+                      fC('savingsType').dirty && fC('savingsType').errors
+                        ? 'error'
+                        : ''
+                    "
+                  >
+                    <div class="mst-panel p-3">
+                      <div class="row">
+                        <div class="form-group col-4">
+                          <label for=""
+                            >Savings Type
+                            <b class="mst-text--danger">*</b></label
+                          >
+                          <select
+                            name=""
+                            id=""
+                            class="form-select"
+                            formControlName="savingsType"
+                          >
+                            <option [value]="0">Fraud</option>
+                            <option [value]="1">Optimization</option>
+                            <option [value]="2">Billing Error</option>
+                            <option [value]="3">Research</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-4">
+                          <label for="">Billing Type </label>
+                          <select
+                            name=""
+                            id=""
+                            class="form-select"
+                            formControlName="billingType"
+                          >
+                            <option [ngValue]="0">Monthly</option>
+                            <option [ngValue]="1">One time</option>
+                            <option [ngValue]="2">Special</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-4">
+                          <label for=""> Billing cycle</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            [readonly]="
+                              +savingDiscoveredForm.get('billingType').value !==
+                              2
+                            "
+                            formControlName="billingCycle"
+                          />
+                        </div>
+                        <div class="form-group col-4">
+                          <label for=""> Amount</label>
+
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <select class="form-select">
+                                <option value="">$</option>
+                              </select>
+                            </div>
+                            <input
+                              type="text"
+                              class="form-control"
+                              formControlName="amount"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="form-group col-4">
+                          <label for=""> Total Amount</label>
+
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <select class="form-select">
+                                <option value="">$</option>
+                              </select>
+                            </div>
+                            <input
+                              type="text"
+                              class="form-control"
+                              formControlName="totalAmount"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group col-4">
+                          <label for=""> Percent Billable</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="percentBillable"
+                          />
+                        </div>
+                        <div class="form-group col-4">
+                          <label for=""> Billable ROI</label>
+
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <select class="form-select">
+                                <option value="">$</option>
+                              </select>
+                            </div>
+                            <input
+                              type="text"
+                              class="form-control"
+                              formControlName="billableROI"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="form-group col-4">
+                          <label for=""> Net Savings</label>
+
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <select class="form-select">
+                                <option value="">$</option>
+                              </select>
+                            </div>
+                            <input
+                              type="text"
+                              class="form-control"
+                              formControlName="netSavings"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </tab>
+                  <tab
+                    heading="Dates *"
+                    [customClass]="
+                      (fC('billMonth').dirty && fC('billMonth').errors) ||
+                      (fC('dateDiscovered').dirty &&
+                        fC('dateDiscovered').errors)
+                        ? 'error'
+                        : ''
+                    "
+                  >
+                    <div class="mst-panel p-3">
+                      <div class="row">
+                        <div class="form-group col-4">
+                          <label for=""
+                            >Bill Month <b class="mst-text--danger">*</b></label
+                          >
+                          <input
+                            type="date"
+                            class="form-control"
+                            formControlName="billMonth"
+                          />
+                        </div>
+                        <div class="form-group col-4">
+                          <label for=""
+                            >Date Discovered
+                            <b class="mst-text--danger">*</b></label
+                          >
+                          <input
+                            type="date"
+                            class="form-control"
+                            formControlName="dateDiscovered"
+                          />
+                        </div>
+                        <div class="form-group col-4">
+                          <label for="">Date Approved</label>
+                          <input
+                            type="date"
+                            class="form-control"
+                            formControlName="dateApproved"
+                          />
+                        </div>
+
+                        <div class="form-group col-4">
+                          <label for="">Date Sent to Carrier</label>
+                          <input
+                            type="date"
+                            class="form-control"
+                            formControlName="dateSentToCarrier"
+                          />
+                        </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="form-group col-4">
+                          <label for="">Date Realized </label>
+                          <input
+                            type="date"
+                            class="form-control"
+                            formControlName="dateRealized"
+                          />
+                        </div>
+
+                        <div class="form-group col-4">
+                          <label for="">Date Invoiced </label>
+                          <input
+                            type="date"
+                            class="form-control"
+                            formControlName="dateInvoiced"
+                          />
+                        </div>
+
+                        <div class="form-group col-4">
+                          <label for="">AMX Invoice Number </label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="amxInvoiceNumber"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </tab>
+
+                  <tab heading="Notes">
+                    <div class="mst-panel p-3">
+                      <div class="row">
+                        <div class="form-group col-12">
+                          <label for="">Description </label>
+                          <textarea
+                            name=""
+                            id=""
+                            rows="5"
+                            class="form-control"
+                            formControlName="description"
+                            maxlength="4000"
+                          ></textarea>
+                          <label for=""
+                            ><small
+                              >{{
+                                4000 -
+                                  savingDiscoveredForm.get('description')?.value
+                                    ?.length
+                              }}
+                              characters remaining of 4000 characters</small
+                            ></label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </tab>
+                </tabset>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

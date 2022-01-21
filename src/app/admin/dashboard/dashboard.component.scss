@@ -1,0 +1,8 @@
+@import '~src/assets/scss/config';
+
+.#{$style-prefix}-dashboard {
+  #chartdiv {
+    height: 300px;
+    background-color: #e2e7f0;
+  }
+}

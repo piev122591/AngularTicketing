@@ -1,0 +1,9 @@
+@import "../theme-config";
+
+.breadcrumb {
+    margin-bottom: 0 !important;
+
+    li {
+        color: $primary !important;
+    }
+}

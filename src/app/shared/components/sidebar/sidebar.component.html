@@ -1,0 +1,105 @@
+<div class="mst-sidebar" [class.mst-sidebar--collapsed]="isCollapsed">
+  <div>
+    <div class="form-group p-2 mst-sidebar__filter">
+      <form class="mst-table__search" style="border-radius: 0">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Filter navigator"
+          name="queryNavigator"
+          [(ngModel)]="queryNavigator"
+        />
+        <i class="fas fa-search"></i>
+      </form>
+    </div>
+    <div class="mst-sidebar__tab-header">
+      <div class="mst-sidebar__tab-item">
+        <i class="fa fa-box"></i>
+      </div>
+      <div class="mst-sidebar__tab-item mst-sidebar__tab-item--active">
+        <i class="fa fa-star"></i>
+      </div>
+      <div class="mst-sidebar__tab-item">
+        <i class="fa fa-history"></i>
+      </div>
+    </div>
+
+    <ul class="list-group mst-sidebar__menu">
+      <!-- <li>
+        <a [routerLink]="['/main']">
+          <i class="fa fa-home"></i>
+          <span> Back to home </span>
+        </a>
+      </li> -->
+
+      <li
+        *ngFor="let c of adminControls | filterNavigator: queryNavigator"
+        [tooltip]="c.name"
+        placement="right"
+        [adaptivePosition]="false"
+        [isDisabled]="!isCollapsed"
+        [class.active]="c.isActive"
+      >
+        <a *ngIf="c.route; else subControls" [routerLink]="[c.route]">
+          <i class="{{ c.icon }}"></i> <span>{{ c.name }}</span>
+        </a>
+        <ng-template #subControls>
+          <a
+            *ngIf="!isCollapsed"
+            class="d-flex justify-content-between align-items-center"
+            (click)="c.isActive = !c.isActive"
+          >
+            <div>
+              <i class="{{ c.icon }}"></i> <span>{{ c.name }}</span>
+            </div>
+            <i
+              class="{{
+                c.isActive ? 'fas fa-chevron-down' : 'fas fa-chevron-right'
+              }}"
+            ></i>
+          </a>
+
+          <div *ngIf="isCollapsed" dropdown class="position-absolute">
+            <div
+              class="d-flex justify-content-between align-items-center"
+              dropdownToggle
+              aria-controls="dropdown-animated"
+            >
+              <a>
+                <i class="{{ c.icon }}"></i> <span>{{ c.name }}</span>
+              </a>
+            </div>
+            <ul
+              id="dropdown-animated"
+              *dropdownMenu
+              class="dropdown-menu"
+              role="menu"
+              aria-labelledby="button-animated"
+            >
+              <li
+                *ngFor="let sC of c.subControls"
+                [class.active]="sC.isActive"
+                role="menuitem"
+              >
+                <a [routerLink]="[sC.route]">
+                  {{ sC.name }}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <ng-container *ngIf="!isCollapsed">
+            <ul class="list-group mst-sidebar__menu" *ngIf="c.isActive">
+              <li *ngFor="let sC of c.subControls" [class.active]="sC.isActive">
+                <a [routerLink]="[sC.route]">
+                  {{ sC.name }}
+                </a>
+              </li>
+            </ul>
+          </ng-container>
+        </ng-template>
+      </li>
+    </ul>
+  </div>
+  <small *ngIf="!isCollapsed"> Auditmacs © 2021 Version 21.1.22.29 </small>
+</div>

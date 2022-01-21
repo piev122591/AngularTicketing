@@ -1,0 +1,11 @@
+@import '../config';
+
+.#{$style-prefix}-text {
+  &--primary {
+    color: $primary;
+  }
+
+  &--danger {
+    color: $danger;
+  }
+}

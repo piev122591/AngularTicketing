@@ -1,0 +1,48 @@
+@import '~src/assets/scss/config';
+
+.#{$style-prefix}-staff-login {
+  height: 100vh;
+  width: 100%;
+
+  &__side-pic {
+    background-image: url(/assets/images/login-background.jpg);
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__app-logo-1 {
+    height: 35px;
+    width: auto;
+    align-self: flex-start;
+  }
+
+  &__login-text {
+    font-size: 24px;
+    color: $primary;
+    font-weight: 450;
+  }
+
+  &__link {
+    color: $primary;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  &__footer {
+    font-size: 10px;
+    display: flex;
+    align-items: flex-end;
+
+    img {
+      height: 48px;
+      margin-bottom: 3px;
+    }
+  }
+}

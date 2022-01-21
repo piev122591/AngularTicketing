@@ -1,0 +1,14 @@
+<div class="mst-admin">
+  <mst-navbar (collapse)="isCollapsed = $event"></mst-navbar>
+  <div class="mst-admin__container">
+    <div
+      class="mst-admin__sidebar"
+      [class.mst-admin__sidebar--collapsed]="isCollapsed"
+    >
+      <mst-sidebar [isCollapsed]="isCollapsed"></mst-sidebar>
+    </div>
+    <div class="mst-admin__page">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

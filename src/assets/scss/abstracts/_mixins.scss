@@ -1,0 +1,32 @@
+@import "../config/breakpoints";
+
+@mixin respond-above($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+        @media (min-width: $breakpoint-value) {
+            @content;
+        }
+    } @else {
+        @media (min-width: $breakpoint) {
+            @content;
+        }
+    }
+}
+
+@mixin customScroll($thumb_color: rgba(1, 74, 117, 0.6), $track_color: #c4c4c4) {
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $thumb_color;
+        border-radius: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: $track_color;
+        border-radius: 6px;
+    }
+}

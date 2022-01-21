@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <span class="modal-title pull-left"
+    >Opps! Looks like you have encountered an error.</span
+  >
+  <button
+    type="button"
+    class="close pull-right btn btn-default"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <blockquote>
+    Below are the details of the error or click
+    <a class="mst-text--primary">here</a> for assistance:
+  </blockquote>
+  <ul class="mt-2">
+    <li *ngFor="let error of errors">{{ error }}</li>
+  </ul>
+  <div class="d-flex justify-content-end">
+    <div class="d-flex">
+      <button (click)="bsModalRef.hide()" class="btn btn-sm btn-primary m-2">
+        Ok
+      </button>
+    </div>
+  </div>
+</div>

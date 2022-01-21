@@ -1,0 +1,5 @@
+@import '../theme-config';
+
+.nav-item.error {
+  border-top: 2px solid $danger;
+}

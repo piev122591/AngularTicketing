@@ -1,0 +1,86 @@
+@import '~src/assets/scss/config';
+
+.#{$style-prefix}-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  // padding: 0 25px 0 25px;
+  .dropdown-menu {
+    min-width: 5rem !important;
+    max-height: 300px !important;
+    overflow-y: scroll;
+    @include customScroll();
+  }
+
+  &__language-picker {
+    background-color: white;
+    border: 1px solid #ced4da;
+    height: 31.6px;
+    border-radius: 3px;
+    width: 100px;
+
+    span {
+      margin-right: 5px !important;
+      color: $primary;
+      font-size: 14px;
+    }
+  }
+
+  &__brand {
+    padding-left: 18px;
+    width: 20vw;
+    max-width: 260px;
+    min-width: 200px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    height: 100%;
+    background-color: #fcfcfc;
+    display: flex;
+    align-items: center;
+    transition: 0.2s linear;
+    &--collapsed {
+      max-width: 65px;
+      min-width: 65px;
+    }
+  }
+
+  &__language {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+
+    span {
+      margin-right: 20px;
+      color: $primary;
+      font-size: 14px;
+    }
+
+    select option,
+    select {
+      font-size: 12px;
+    }
+
+    select {
+      width: 120px;
+    }
+  }
+
+  &__breadcrumb {
+    padding-left: 25px;
+    display: flex;
+    align-items: center;
+
+    i {
+      color: $primary;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+
+    a {
+      text-decoration: none;
+      color: $primary;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.ng-select-container {
+  min-height: unset !important;
+  height: 31px !important;
+  font-size: 12px !important;
+}
+.ng-option-label {
+  font-size: 12px !important;
+}
+
+.ng-select-disabled {
+  .ng-select-container {
+    background-color: #e9ecef !important;
+  }
+}

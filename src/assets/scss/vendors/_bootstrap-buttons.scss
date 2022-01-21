@@ -1,0 +1,30 @@
+@import '../config';
+
+.btn {
+  border-radius: 0 !important;
+  height: fit-content !important;
+}
+
+.btn-primary {
+  background-color: $primary !important;
+  color: white;
+  transition: 0.2s linear;
+
+  &:hover {
+    background-color: white !important;
+    color: $primary !important;
+    border-color: $primary !important;
+  }
+}
+
+.btn-info {
+  background-color: $info !important;
+  color: white !important;
+  transition: 0.2s linear;
+
+  &:hover {
+    background-color: white !important;
+    color: $info !important;
+    border-color: $info !important;
+  }
+}

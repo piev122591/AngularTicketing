@@ -1,0 +1,13 @@
+@import '../config';
+
+.#{$style-prefix}-modal {
+  .modal-header {
+    padding: 0.5rem 1rem !important;
+  }
+
+  input,
+  label,
+  select {
+    font-size: 12px;
+  }
+}

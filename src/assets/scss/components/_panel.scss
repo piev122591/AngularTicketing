@@ -1,0 +1,14 @@
+@import '../config';
+
+.#{$style-prefix}-panel {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+  input,
+  label,
+  select,
+  textarea {
+    font-size: 12px;
+  }
+}

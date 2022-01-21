@@ -1,0 +1,135 @@
+@import '~src/assets/scss/config';
+
+.#{$style-prefix}-sidebar {
+  background-color: $primary;
+  height: calc(100vh - 48px);
+  width: 100%;
+  overflow-y: auto;
+  @include customScroll();
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.2s linear;
+
+  &__tab-header {
+    height: 36px;
+    width: 100%;
+    background-color: $primary;
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  &__filter {
+    background-color: #e2e7f0ea;
+
+    input {
+      background-color: white;
+    }
+  }
+
+  &__tab-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #e2e7f0ea;
+    transition: 0.1s linear;
+
+    &:hover {
+      border: 1px solid #e2e7f0ea;
+      border-bottom: 5px solid $info;
+    }
+
+    &--active {
+      border: 1px solid #e2e7f0ea;
+      border-bottom: 5px solid #e2e7f0ea;
+    }
+  }
+
+  &--collapsed {
+    li {
+      span {
+        display: none;
+      }
+      text-align: center;
+    }
+  }
+
+  small {
+    color: #dcdcdc;
+    font-size: 10px;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 5px;
+  }
+  // padding: 20px;
+
+  &__menu {
+    // padding: 0;
+    // margin-top: 20px;
+
+    .dropdown-menu {
+      li {
+        padding: 5px 10px;
+        height: unset;
+        color: $primary;
+        font-size: 14px;
+      }
+    }
+    li {
+      min-height: 44px;
+
+      list-style: none;
+      color: #dcdcdc;
+      transition: 0.2s linear;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #dedede;
+        color: $primary;
+      }
+
+      i {
+        margin-right: 7px;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    li.active {
+      background-color: #dedede;
+      color: $primary;
+
+      ul {
+        li {
+          a {
+            color: $primary;
+            font-size: 14px;
+            padding-left: 50px;
+          }
+        }
+
+        li.active {
+          background-color: #f0f0f0;
+          border-left: 5px solid $primary;
+        }
+      }
+      ul.dropdown-menu {
+        li {
+          a {
+            color: $primary;
+            font-size: 12px;
+            padding-left: 10px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@import "~src/assets/scss/config";
+
+.#{$style-prefix}-admin {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    &__container {
+        display: flex;
+        width: 100%;
+    }
+
+    &__sidebar {
+        // width: 20%;
+        max-width: 260px;
+        min-width: 200px;
+        transition: 0.2s linear;
+        flex: 1;
+
+        &--collapsed {
+            max-width: 65px !important;
+            min-width: 65px !important;
+        }
+    }
+
+    &__page {
+        padding: 20px;
+        flex: 4;
+        background-color: #edf4fb;
+        height: calc(100vh - 48px);
+        overflow-y: auto;
+        @include customScroll();
+        position: relative;
+    }
+}

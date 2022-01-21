@@ -1,0 +1,63 @@
+<div class="mst-navbar">
+  <div class="d-flex">
+    <div
+      class="mst-navbar__brand"
+      [class.mst-navbar__brand--collapsed]="isCollapsed"
+    >
+      <img
+        [src]="
+          isCollapsed
+            ? 'assets/images/auditmacs-small-logo.png'
+            : 'assets/images/auditmacs-logo.png'
+        "
+        alt="Getz Logo"
+        [attr.height]="isCollapsed ? 36 : 28"
+      />
+    </div>
+    <div class="mst-navbar__breadcrumb">
+      <i
+        class="fa fa-bars"
+        (click)="toggleCollapse()"
+        style="cursor: pointer"
+      ></i>
+      <ol class="breadcrumb">
+        <li *ngFor="let b of breadcrumbs" class="breadcrumb-item active">
+          <span *ngIf="!b.path">
+            {{ b.name }}
+          </span>
+          <a *ngIf="b.path" [routerLink]="b.path">
+            {{ b.name }}
+          </a>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="d-flex pe-3">
+    <div class="btn-group" dropdown placement="bottom right">
+      <div
+        id="button-animated"
+        dropdownToggle
+        class="dropdown-toggle"
+        aria-controls="dropdown-animated"
+        style="cursor: pointer"
+      >
+        Stephen Vinuya <span class="caret"></span>
+      </div>
+      <ul
+        id="dropdown-animated"
+        *dropdownMenu
+        class="dropdown-menu dropdown-menu-left"
+        role="menu"
+        aria-labelledby="button-animated"
+      >
+        <!-- <li role="menuitem"><a class="dropdown-item">Help</a></li> -->
+        <li role="menuitem">
+          <a [routerLink]="['/admin/profile']" class="dropdown-item">Profile</a>
+        </li>
+        <li role="menuitem">
+          <a class="dropdown-item">Sign out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

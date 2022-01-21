@@ -1,0 +1,15 @@
+@import '~src/assets/scss/config';
+
+.#{$style-prefix}-service-board {
+  &__internal-notes {
+    border-left: 4px solid $warning;
+  }
+
+  &__activity-item {
+    border-radius: 3px;
+    border: 1px solid #ced4da;
+    padding: 20px;
+    font-size: 14px;
+    border-left: 4px solid grey;
+  }
+}

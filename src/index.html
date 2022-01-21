@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Maestro Ticketing</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/images/auditmacs-small-logo.png"
+    />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <script
+      src="https://kit.fontawesome.com/d7004a33db.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .mst-loading {
+        background-color: #edf4fb;
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .mst-loading img {
+        /* animation: pulse-black 2s infinite; */
+      }
+
+      .mst-loading span {
+        font-size: 18px;
+        color: #00539f;
+      }
+
+      .mst-loading span i {
+        font-size: 28px;
+      }
+
+      @keyframes pulse-black {
+        0% {
+          transform: scale(0.95);
+        }
+
+        70% {
+          transform: scale(1);
+        }
+
+        100% {
+          transform: scale(0.95);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <mst-root>
+      <div class="mst-loading">
+        <img
+          src="assets/images/auditmacs-logo.png"
+          height="64"
+          alt="Auditmacs"
+        />
+        <span class="mt-2"
+          ><i class="fa fa-spin fa-spinner me-2"></i> Please wait, app is
+          loading...
+        </span>
+      </div>
+    </mst-root>
+  </body>
+</html>
